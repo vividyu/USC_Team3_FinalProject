@@ -1,12 +1,26 @@
-import { useState, useEffect } from "react";
-//import { CSSTransition } from "react-transition-group";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import "./SlideMenu.scss";
 
 const SlideMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (e.clientX < 50 && !showMenu) {
+        setShowMenu(true);
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [showMenu]);
 
   const handleNavigation = (path) => {
     navigate(path);
@@ -15,8 +29,21 @@ const SlideMenu = () => {
 
   const isActive = (path) => location.pathname === path;
 
+  const handleCloseMenu = () => {
+    setShowMenu(false);
+  };
+
   return (
-    <nav className={`slide-menu${showMenu ? " show" : ""}`}>
+    <nav
+      className={`slide-menu${showMenu ? " show" : ""}`}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+    >
+      {isHovering && (
+        <div className="close-button" onClick={handleCloseMenu}>
+          &times;
+        </div>
+      )}
       <a
         href="/"
         className={isActive("/") ? "active" : ""}
@@ -60,6 +87,5 @@ const SlideMenu = () => {
     </nav>
   );
 };
-
 
 export default SlideMenu;
