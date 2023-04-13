@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import SlideMenu from "./components/SlideMenu";
-import HomePage from "./components/HomePage";
-import MovieList from "./components/MovieList";
-import MovieListLiked from "./components/MovieListLiked";
-import MovieListBlocked from "./components/MovieListBlocked";
+import SlideMenu from "./components/SlideMenu/SlideMenu";
+import HomePage from "./components/HomePage/HomePage";
+import MovieList from "./components/MovieList/MovieList";
+import MovieListLiked from "./components/MovieListLiked/MovieListLiked";
+import MovieListBlocked from "./components/MovieListBlocked/MovieListBlocked";
 
 
 
