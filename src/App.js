@@ -5,7 +5,12 @@ import MovieList from "./components/MovieList";
 import MovieListLiked from "./components/MovieListLiked";
 import MovieListBlocked from "./components/MovieListBlocked";
 
+
+
 function App() {
+
+  let preLoadimageList;
+
   return (
     <Router>
       <div className="App">
