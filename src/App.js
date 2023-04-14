@@ -1,25 +1,30 @@
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import SlideMenu from "./components/SlideMenu/SlideMenu";
 import HomePage from "./components/HomePage/HomePage";
 import MovieList from "./components/MovieList/MovieList";
 import MovieListLiked from "./components/MovieListLiked/MovieListLiked";
 import MovieListBlocked from "./components/MovieListBlocked/MovieListBlocked";
-
-
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
-
-  let preLoadimageList;
-
   return (
     <Router>
       <div className="App">
-        <SlideMenu />
+        <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/movie-list" element={<MovieList />} />
-          <Route path="/movie-list-liked" element={<MovieListLiked />} />
-          <Route path="/movie-list-blocked" element={<MovieListBlocked />} />
+          <Route
+            path="/movie-list"
+            element={<MovieList key="movie-list" />}
+          />
+          <Route
+            path="/movie-list-liked"
+            element={<MovieListLiked key="movie-list-liked" />}
+          />
+          <Route
+            path="/movie-list-blocked"
+            element={<MovieListBlocked key="movie-list-blocked" />}
+          />
         </Routes>
       </div>
     </Router>
@@ -27,4 +32,3 @@ function App() {
 }
 
 export default App;
-
