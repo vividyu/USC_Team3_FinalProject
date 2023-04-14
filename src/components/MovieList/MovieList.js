@@ -4,7 +4,7 @@ import { useState } from "react";
 const MovieList = () => {
 
   // default to popularity
-  const [sort, currSort] = useState('popularity');
+  const [sort, currSort] = useState('default');
 
   return (
     <div>
