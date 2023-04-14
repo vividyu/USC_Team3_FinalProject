@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
+import axios from "axios";
 import { useState } from "react";
 import {POPULARITY_API_URL,
         TITLE_API_URL,
         VOTE_COUNT_API_URL,
         RELEASE_DATE_API_URL,
-        VOTE_AVERAGE_API_URL} from '../../constants'
+        VOTE_AVERAGE_API_URL,
+        API_KEY_V3} from '../../constants'
 
 const MovieList = () => {
 
   const [movies, setMovies] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currPage, setCurrPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
   // default to popularity
@@ -29,12 +31,13 @@ const MovieList = () => {
     }
   }
 
+
   useEffect(() => {
     getMovies(currPage);
   }, [currPage, sortWord])
 
   const getMovies = async (page) => {
-    const response = await axios.get(handleSort(sortWord) + `&page=${page}`);
+    const response = await axios.get(handleSort(sortWord) + `&page=${page}` + `&api_key=${API_KEY_V3}`);
     setMovies(response.data.results);
     setTotalPages(response.data.total_pages);
   };
@@ -43,7 +46,6 @@ const MovieList = () => {
   return (
     <div>
       <h1>Movie List</h1>
-      <p>{movies}</p>
     </div>
   );
 };
