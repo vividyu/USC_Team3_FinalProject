@@ -1,7 +1,20 @@
 import React from "react";
 
 function MovieItem() {
-  return <h1>movie item content here!</h1>;
+  return (
+    <div className="movie-item-container">
+      <img src="#" alt="movie-title" />
+      <div className="movie-ttile">movie-title</div>
+      <div className="movie-btns">
+        <button>Like</button>
+        <button>Block</button>
+      </div>
+      <div className="vote-score">
+        <span>Vote count: </span> | <span>Average score:</span>
+      </div>
+      <div className="movie-summary">movie-summary</div>
+    </div>
+  );
 }
 
 export default MovieItem;
