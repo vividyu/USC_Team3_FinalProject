@@ -6,7 +6,9 @@ import {POPULARITY_API_URL,
         VOTE_COUNT_API_URL,
         RELEASE_DATE_API_URL,
         VOTE_AVERAGE_API_URL,
-        API_KEY_V3} from '../../constants'
+        API_KEY_V3} from '../../constants';
+import SortBar from "../SortBar/SortBar";
+
 
 const MovieList = () => {
 
@@ -34,6 +36,7 @@ const MovieList = () => {
 
   useEffect(() => {
     getMovies(currPage);
+    console.log(movies);
   }, [currPage, sortWord])
 
   const getMovies = async (page) => {
@@ -46,6 +49,7 @@ const MovieList = () => {
   return (
     <div>
       <h1>Movie List</h1>
+      <SortBar setSortWord={setSortWord} setCurrPage={setCurrPage} />
     </div>
   );
 };
