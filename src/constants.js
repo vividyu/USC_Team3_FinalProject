@@ -20,7 +20,7 @@ const CONFIG_URL = `https://api.themoviedb.org/3/configuration?api_key=${API_KEY
 const LIKE_MOVIE = "LIKE_MOVIE";
 const BLOCK_MOVIE = "BLOCK_MOVIE";
 
-export default {
+export {
   API_KEY_V3,
   BASE_URL,
   POPULARITY_API_URL,
