@@ -1,5 +1,35 @@
 # USC Final Project of Team 3
 
+## Git Operations Before open a PR to `dev`:
+
+1. You should first make sure that current work branch is your `personal branch`:
+```
+git branch --show-current
+```
+or use tools such as GitHub Desktop, VSCode to check.
+
+2. Commit any uncommitted changes in your local branch:
+```
+git add .
+git commit -a -m "Your commit message"
+```
+or use tools such as GitHub Desktop, VSCode to commit & push.
+
+3. Fetch changes from all remote branches:
+```
+git fetch
+```
+
+4. Merge the changes from the `dev` branch into your current branch:
+```
+git merge origin/dev
+``` 
+
+5. Push your updated current branch to the remote repository:
+```
+git push
+```
+
 ## Pre-requisites on local machine
 Nodejs with npm installed
 
