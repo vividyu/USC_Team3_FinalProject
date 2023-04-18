@@ -22,14 +22,14 @@ const Pagination = ({ totalPages, setCurrentPage }) => {
 
   return (
     <div className="pagination-container">
-      <button clasName = "prev-page" onClick={handlePreviousPage} disabled={currentPage === 1}>
-        Prev
+      <button className = "prev-page" onClick={handlePreviousPage} disabled={currentPage === 1}>
+      ←
       </button>
       <span>
         {currentPage}/{totalPages}
       </span>
-      <button clasName = "next-page" onClick={handleNextPage} disabled={currentPage === totalPages}>
-        Next
+      <button className = "next-page" onClick={handleNextPage} disabled={currentPage === totalPages}>
+      →
       </button>
     </div>
   );
