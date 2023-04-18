@@ -7,41 +7,34 @@ import {
   EXPAND_MOVIE_DATA,
 } from "./actionConstants";
 
-const likeMovie = (movie) => ({
+export const likeMovie = (movie) => ({
   type: LIKE_MOVIE,
   payload: movie,
 });
 
-const blockMoive = (movie) => ({
+export const blockMovie = (movie) => ({
   type: BLOCK_MOVIE,
   payload: movie,
 });
 
-const deleteLikedMovie = (movieId) => ({
+export const deleteLikedMovie = (movieId) => ({
   type: DELETE_LIKED_MOVIE,
   payload: movieId,
 });
 
-const unblockMovie = (movieId) => ({
+export const unblockMovie = (movieId) => ({
   type: UNBLOCK_MOVIE,
   payload: movieId,
 });
 
-const storeMovieData = (page, movies, totalPages) => ({
+export const storeMovieData = (page, movies, totalPages) => ({
   type: STROE_MOVIE_DATA,
   payload: { page, movies, totalPages },
 });
 
-const expandMovieData = (movieId) => ({
+export const expandMovieData = (movieId) => ({
   type: EXPAND_MOVIE_DATA,
   payload: movieId,
 })
 
-export const actions = {
-  likeMovie,
-  blockMoive,
-  deleteLikedMovie,
-  unblockMovie,
-  storeMovieData,
-  expandMovieData,
-};
+
