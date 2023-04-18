@@ -7,7 +7,7 @@ const SortBar = ({setSortWord, setCurrPage}) => {
     setCurrPage(1);
   }
 
-  return(<div>
+  return(<div className='sort-bar'>
      <button onClick={() => handleClick('title')}>Title</button>
      <button onClick={() => handleClick('release date')}>Release Date</button>
      <button onClick={() => handleClick('vote average')}>Vote Average</button>
