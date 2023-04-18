@@ -1,0 +1,8 @@
+.sort-bar {
+  display: flex;
+  justify-content: center;
+}
+
+.sort-bar > button {
+  margin: 2vmin;
+}
