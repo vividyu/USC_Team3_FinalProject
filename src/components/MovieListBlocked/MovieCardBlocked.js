@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux'
 import { createLikeMovie, createDeleteMovie, createExpandMovie } from "../../actions/MovieActions";
+import { likeMovie, unblockMovie, expandMovieData } from '../actions/actionCreator'
 
 const BlockedMovieCard = ({ movie }) => {
   const [isMouseOver, setIsMouseOver] =useState(false);
