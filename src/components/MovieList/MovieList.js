@@ -1,62 +1,46 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import { useState } from "react";
-import {
-  POPULARITY_API_URL,
-  TITLE_API_URL,
-  VOTE_COUNT_API_URL,
-  RELEASE_DATE_API_URL,
-  VOTE_AVERAGE_API_URL,
-  API_KEY_V3,
-} from "../../constants";
 import SortBar from "../SortBar/SortBar";
-
+import { connect } from "react-redux";
 import MovieItem from "../MovieItem/MovieItem";
-import Pagination from "../Pagination/Pagination";
+import * as actions from "../../actions/actionCreator";
+import { useSelector } from "react-redux";
 
-const MovieList = () => {
-  const [movies, setMovies] = useState([]);
+const MovieList = ({ getMovies, movieData }) => {
   const [currPage, setCurrPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
 
   // default to popularity
   const [sortWord, setSortWord] = useState("default");
 
-  function handleSort(str) {
-    if (str === "release date") {
-      return RELEASE_DATE_API_URL;
-    } else if (str === "title") {
-      return TITLE_API_URL;
-    } else if (str === "vote count") {
-      return VOTE_COUNT_API_URL;
-    } else if (str === "vote average") {
-      return VOTE_AVERAGE_API_URL;
-    } else {
-      return POPULARITY_API_URL;
-    }
-  }
-
   useEffect(() => {
-    getMovies(currPage);
-    console.log(movies);
-  }, [currPage, sortWord]);
+    getMovies(currPage, sortWord);
+  }, [currPage, getMovies, sortWord]);
 
-  const getMovies = async (page) => {
-    const response = await axios.get(
-      handleSort(sortWord) + `&page=${page}` + `&api_key=${API_KEY_V3}`
-    );
-    setMovies(response.data.results);
-    setTotalPages(response.data.total_pages);
-  };
-
+  const blockedMovies = useSelector((state) => state.blockedMovies);
+  const filteredMovies = movieData?.[currPage]?.movies.filter(
+    (movie) =>
+      !blockedMovies.some((blockedMovie) => blockedMovie.id === movie.id)
+  );
   return (
     <div>
       <h1>Movie List</h1>
+      {/* <Pagination /> */}
       <SortBar setSortWord={setSortWord} setCurrPage={setCurrPage} />
-      <Pagination totalPages={totalPages} setCurrentPage={setCurrPage} />
-      <MovieItem />
+      {filteredMovies?.map((movie) => (
+        <MovieItem key={movie.id} movie={movie} />
+      ))}
     </div>
   );
 };
 
-export default MovieList;
+const mapStateToProps = (state) => ({
+  movieData: state.movieData,
+});
+
+const mapDispatchtoProps = (dispatch) => {
+  return {
+    getMovies: (page, sortWord) => dispatch(actions.getMovies(page, sortWord)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchtoProps)(MovieList);

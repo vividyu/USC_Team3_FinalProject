@@ -7,6 +7,10 @@ import {
   EXPAND_MOVIE_DATA,
 } from "./actionConstants";
 
+import axios from "axios";
+import { API_KEY_V3 } from "../constants";
+import { handleSort } from "../helpers";
+
 export const likeMovie = (movie) => ({
   type: LIKE_MOVIE,
   payload: movie,
@@ -35,6 +39,15 @@ export const storeMovieData = (page, movies, totalPages) => ({
 export const expandMovieData = (movieId) => ({
   type: EXPAND_MOVIE_DATA,
   payload: movieId,
-})
+});
 
-
+export const getMovies = (page, sortWord) => {
+  return async (dispatch) => {
+    const response = await axios.get(
+      handleSort(sortWord) + `&page=${page}` + `&api_key=${API_KEY_V3}`
+    );
+    dispatch(
+      storeMovieData(page, response.data.results, response.data.total_pages)
+    );
+  };
+};

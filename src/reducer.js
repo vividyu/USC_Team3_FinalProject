@@ -1,18 +1,24 @@
-import Actions from "./actions/actionConstants";
+import {
+  LIKE_MOVIE,
+  BLOCK_MOVIE,
+  DELETE_LIKED_MOVIE,
+  UNBLOCK_MOVIE,
+  STROE_MOVIE_DATA,
+} from "./actions/actionConstants";
 import initialState from "./store";
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case Actions.LIKE_MOVIE:
+    case LIKE_MOVIE:
       return { ...state, likedMovies: [...state.likedMovies, action.payload] };
 
-    case Actions.BLOCK_MOVIE:
+    case BLOCK_MOVIE:
       return {
         ...state,
         blockedMovies: [...state.blockedMovies, action.payload],
       };
 
-    case Actions.DELETE_LIKED_MOVIE:
+    case DELETE_LIKED_MOVIE:
       return {
         ...state,
         likedMovies: state.likedMovies.filter(
@@ -20,7 +26,7 @@ function reducer(state = initialState, action) {
         ),
       };
 
-    case Actions.UNBLOCK_MOVIE:
+    case UNBLOCK_MOVIE:
       return {
         ...state,
         blockedMovies: state.blockedMovies.filter(
@@ -28,7 +34,7 @@ function reducer(state = initialState, action) {
         ),
       };
 
-    case Actions.STROE_MOVIE_DATA:
+    case STROE_MOVIE_DATA:
       return {
         ...state,
         movieData: {
