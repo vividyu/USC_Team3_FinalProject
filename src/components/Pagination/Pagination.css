@@ -1,7 +1,32 @@
 .pagination-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 61.8vw;
+  margin: 0 auto;
+}
+
+.prev-page,
+.next-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.prev-page:hover,
+.next-page:hover {
+  background-color: #d0d0d0;
+}
+
+.prev-page:disabled,
+.next-page:disabled {
+  cursor: not-allowed;
+  background-color: #f0f0f0;
+  opacity: 0.5;
+}
