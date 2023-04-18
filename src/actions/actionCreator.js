@@ -4,6 +4,7 @@ import {
   DELETE_LIKED_MOVIE,
   UNBLOCK_MOVIE,
   STROE_MOVIE_DATA,
+  EXPAND_MOVIE_DATA,
 } from "./actionConstants";
 
 const likeMovie = (movie) => ({
@@ -31,10 +32,16 @@ const storeMovieData = (page, movies, totalPages) => ({
   payload: { page, movies, totalPages },
 });
 
+const expandMovieData = (movieId) => ({
+  type: EXPAND_MOVIE_DATA,
+  payload: movieId,
+})
+
 export const actions = {
   likeMovie,
   blockMoive,
   deleteLikedMovie,
   unblockMovie,
   storeMovieData,
+  expandMovieData,
 };
