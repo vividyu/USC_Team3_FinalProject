@@ -13,7 +13,7 @@ const MovieList = ({ getMovies, movieData }) => {
   const [sortWord, setSortWord] = useState("default");
 
   useEffect(() => {
-    getMovies(currPage);
+    getMovies(currPage, sortWord);
   }, [currPage, getMovies, sortWord]);
 
   const blockedMovies = useSelector((state) => state.blockedMovies);
