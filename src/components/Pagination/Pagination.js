@@ -1,22 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Pagination.css";
 
-const Pagination = ({ totalPages, setCurrentPage }) => {
-  const [currentPage, setLocalCurrentPage] = useState(1);
-
+const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
   const handlePreviousPage = () => {
     if (currentPage > 1) {
-      const newPage = currentPage - 1;
-      setLocalCurrentPage(newPage);
-      setCurrentPage(newPage);
+      setCurrentPage(currentPage - 1);
     }
   };
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
-      const newPage = currentPage + 1;
-      setLocalCurrentPage(newPage);
-      setCurrentPage(newPage);
+      setCurrentPage(currentPage + 1);
     }
   };
 
