@@ -12,6 +12,7 @@ import {
 import SortBar from "../SortBar/SortBar";
 
 import MovieItem from "../MovieItem/MovieItem";
+import Pagination from "../Pagination/Pagination";
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
@@ -52,6 +53,7 @@ const MovieList = () => {
     <div>
       <h1>Movie List</h1>
       <SortBar setSortWord={setSortWord} setCurrPage={setCurrPage} />
+      <Pagination totalPages={totalPages} setCurrentPage={setCurrPage} />
       <MovieItem />
     </div>
   );
