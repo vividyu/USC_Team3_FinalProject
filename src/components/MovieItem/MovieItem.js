@@ -5,9 +5,10 @@ import {
   blockMovie,
   deleteLikedMovie,
 } from "../../actions/actionCreator";
+import "./MovieItem.css";
 
 function MovieItem({ movie }) {
-  console.log(movie);
+  // console.log(movie);
   const dispatch = useDispatch();
   const likedMovies = useSelector((state) => state.likedMovies);
 
@@ -18,6 +19,7 @@ function MovieItem({ movie }) {
   const isMovieLiked = () => {
     return likedMovies.some((likedMovie) => likedMovie.id === movie.id);
   };
+  console.log(likedMovies);
 
   const handleBlock = () => {
     dispatch(blockMovie(movie));
@@ -32,17 +34,25 @@ function MovieItem({ movie }) {
         src={`http://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt={movie.title}
       />
-      <div className="movie-ttile">{movie.title}</div>
       <div className="movie-btns">
-        <button disabled={isMovieLiked()} onClick={handleLike}>
+        <button
+          className="btn like"
+          disabled={isMovieLiked()}
+          onClick={handleLike}
+        >
           {isMovieLiked() ? "Liked" : "Like"}
         </button>
-        <button onClick={handleBlock}>Block</button>
+        <button className="btn block" onClick={handleBlock}>
+          Block
+        </button>
       </div>
+      <div className="movie-title">{movie.title}</div>
+      <div className="release">Release Date: {movie.release_date}</div>
       <div className="vote-score">
-        <span>Vote count: </span> | <span>Average score:</span>
+        <span>Vote count: {movie.vote_count} </span> |{" "}
+        <span>Average score: {movie.vote_average}</span>
       </div>
-      <div className="movie-summary">movie-summary</div>
+      <div className="movie-overview">{movie.overview}</div>
     </div>
   );
 }

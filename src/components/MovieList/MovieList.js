@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import MovieItem from "../MovieItem/MovieItem";
 import * as actions from "../../actions/actionCreator";
 import { useSelector } from "react-redux";
+import "./MovieList.css";
 
 const MovieList = ({ getMovies, movieData }) => {
   const [currPage, setCurrPage] = useState(1);
@@ -22,13 +23,15 @@ const MovieList = ({ getMovies, movieData }) => {
       !blockedMovies.some((blockedMovie) => blockedMovie.id === movie.id)
   );
   return (
-    <div>
-      <h1>Movie List</h1>
+    <div className="movie-list-content">
+      <h1>Our Most Popular Movies !</h1>
       {/* <Pagination /> */}
       <SortBar setSortWord={setSortWord} setCurrPage={setCurrPage} />
-      {filteredMovies?.map((movie) => (
-        <MovieItem key={movie.id} movie={movie} />
-      ))}
+      <div className="list-of-movies">
+        {filteredMovies?.map((movie) => (
+          <MovieItem key={movie.id} movie={movie} />
+        ))}
+      </div>
     </div>
   );
 };
