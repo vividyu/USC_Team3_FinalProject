@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux'
-import { createLikeMovie, createDeleteMovie, createExpandMovie } from "../../actions/MovieActions";
-import { likeMovie, unblockMovie, expandMovieData } from '../actions/actionCreator'
+import { deleteLikedMovie, blockMovie, expandMovieData } from '../actions/actionCreator'
 
 const BlockedMovieCard = ({ movie }) => {
   const [isMouseOver, setIsMouseOver] =useState(false);
@@ -15,16 +14,16 @@ const BlockedMovieCard = ({ movie }) => {
     setIsMouseOver(false);
   };
 
-  const handleLike = (movie) => {
-    dispatch(createLikeMovie(movie))
+  const handleRemoveLiked = (movie) => {
+    dispatch(deleteLikedMovie(movie))
   };
 
-  const handleRemove = (movie) => {
-    dispatch(createDeleteMovie(movie))
+  const handleBlockLiked = (movie) => {
+    dispatch(blockMovie(movie))
   };
 
   const handleExpand = (movie) => {
-    dispatch(createExpandMovie(movie))
+    dispatch(expandMovieData(movie))
   };
 
   return (
@@ -35,8 +34,8 @@ const BlockedMovieCard = ({ movie }) => {
       <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.Title} />
       {isMouseOver && (
         <div className="blocked-card-button">
-          <button onClick={() => {handleLike(movie)}}>like</button>
-          <button onClick={() => {handleRemove(movie)}}>remove</button>
+          <button onClick={() => {handleRemoveLiked(movie)}}>like</button>
+          <button onClick={() => {handleBlockLiked(movie)}}>remove</button>
           <button onClick={() => {handleExpand(movie)}}>...</button>
         </div>
       )}
