@@ -3,11 +3,14 @@
   margin: 1%;
   width: 23%;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 25px;
 }
 
 img {
   display: block;
   width: 100%;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 }
 
 .movie-btns {
@@ -20,6 +23,7 @@ img {
   height: 60px;
   border-radius: 15px;
   font-size: large;
+  cursor: pointer;
 }
 
 .btn.like {
@@ -42,8 +46,8 @@ img {
 }
 
 .movie-overview {
-  width: 95%;
+  width: 90%;
   margin-top: 15px;
-  margin-left: 10px;
+  margin-left: 20px;
   text-align: justify;
 }
