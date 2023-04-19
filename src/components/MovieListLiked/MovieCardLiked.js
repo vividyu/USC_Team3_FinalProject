@@ -7,7 +7,7 @@ import {
 } from "../../actions/actionCreator";
 import "./LikedMovieCard.scss";
 
-const LikedMovieCard = ({ movie }) => {
+const LikedMovieCard = ({ movie, setExpandedMovie }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const dispatch = useDispatch();
 
@@ -28,7 +28,8 @@ const LikedMovieCard = ({ movie }) => {
   };
 
   const handleExpand = (movie) => {
-    dispatch(expandMovieData(movie));
+    //dispatch(expandMovieData(movie));
+    setExpandedMovie(movie);
   };
 
   return (
