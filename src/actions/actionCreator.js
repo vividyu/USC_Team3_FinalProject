@@ -5,6 +5,7 @@ import {
   UNBLOCK_MOVIE,
   STROE_MOVIE_DATA,
   EXPAND_MOVIE_DATA,
+  STORE_MOVIE_DETAILS,
 } from "./actionConstants";
 
 import axios from "axios";
@@ -41,6 +42,11 @@ export const expandMovieData = (movieId) => ({
   payload: movieId,
 });
 
+export const storeMovieDetails = (movieDetails) => ({
+  type: STORE_MOVIE_DETAILS,
+  payload: movieDetails,
+});
+
 export const getMovies = (page, sortWord) => {
   return async (dispatch, getState) => {
 
@@ -53,8 +59,18 @@ export const getMovies = (page, sortWord) => {
     const response = await axios.get(
       `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&` + `&page=${page}` + `&api_key=${API_KEY_V3}`
     );
+
     dispatch(
       storeMovieData(page, response.data.results, response.data.total_pages)
     );
+  };
+};
+
+export const getMovieDetails = (movie_id) => {
+  return async (dispatch) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY_V3}&language=en-US`
+    );
+    dispatch(storeMovieDetails(response.data));
   };
 };
