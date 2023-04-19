@@ -41,8 +41,15 @@ export const expandMovieData = (movieId) => ({
   payload: movieId,
 });
 
-export const getMovies = (page) => {
-  return async (dispatch) => {
+export const getMovies = (page, sortWord) => {
+  return async (dispatch, getState) => {
+
+    const movieData = getState().movieData;
+
+    if (movieData[page]) {
+      return;
+    }
+
     const response = await axios.get(
       `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&` + `&page=${page}` + `&api_key=${API_KEY_V3}`
     );
