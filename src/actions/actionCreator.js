@@ -41,10 +41,10 @@ export const expandMovieData = (movieId) => ({
   payload: movieId,
 });
 
-export const getMovies = (page, sortWord) => {
+export const getMovies = (page) => {
   return async (dispatch) => {
     const response = await axios.get(
-      handleSort(sortWord) + `&page=${page}` + `&api_key=${API_KEY_V3}`
+      `https://api.themoviedb.org/3/discover/movie?sort_by=original_title.asc&` + `&page=${page}` + `&api_key=${API_KEY_V3}`
     );
     dispatch(
       storeMovieData(page, response.data.results, response.data.total_pages)

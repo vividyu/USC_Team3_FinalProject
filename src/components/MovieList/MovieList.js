@@ -9,26 +9,55 @@ import "./MovieList.css";
 
 const MovieList = ({ movieData, blockedMovies, getMovies }) => {
   const [currPage, setCurrPage] = useState(1);
-
-  // default to popularity
-  const [sortWord, setSortWord] = useState("default");
+  const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
 
   useEffect(() => {
-    getMovies(currPage, sortWord);
-  }, [currPage, getMovies, sortWord]);
+    getMovies(currPage);
+    setMovies(movieData);
+    handleFilter(movies);
+  }, [currPage]);
+
+  const handleSort = (sortType) => {
+    const sortedMovies = [...movies].sort((a, b) => {
+      let aValue = a[sortType];
+      let bValue = b[sortType];
+
+      if (typeof aValue === "string") {
+        aValue = aValue.toLowerCase();
+        bValue = bValue.toLowerCase();
+      }
+
+      if (aValue < bValue) {
+        return -1;
+      }
+
+      if (aValue > bValue) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    setMovies(sortedMovies);
+  };
+
+  function handleFilter(movies) {
+    let storeFilteredMovies = [];
+    if (movies) {
+      storeFilteredMovies = movies.filter(
+        (movie) =>
+          !blockedMovies.some((blockedMovie) => blockedMovie.id === movie.id)
+      );
+    }
+    setFilteredMovies(storeFilteredMovies);
+  }
 
   const totalPages =
     movieData && movieData[currPage] && movieData[currPage].totalPages
       ? movieData[currPage].totalPages
       : 1;
-  let filteredMovies = [];
 
-  if (movieData && movieData[currPage] && movieData[currPage].movies) {
-    filteredMovies = movieData[currPage].movies.filter(
-      (movie) =>
-        !blockedMovies.some((blockedMovie) => blockedMovie.id === movie.id)
-    );
-  }
 
   return (
     <div>
@@ -38,7 +67,7 @@ const MovieList = ({ movieData, blockedMovies, getMovies }) => {
         currentPage={currPage}
         setCurrentPage={setCurrPage}
       />
-      <SortBar setSortWord={setSortWord} setCurrPage={setCurrPage} />
+      <SortBar handleSort={handleSort} />
       <div className="list-of-movies">
         {filteredMovies?.map((movie) => (
           <MovieItem key={movie.id} movie={movie} />
@@ -55,7 +84,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchtoProps = (dispatch) => {
   return {
-    getMovies: (page, sortWord) => dispatch(getMovies(page, sortWord)),
+    getMovies: (page) => dispatch(getMovies(page)),
   };
 };
 

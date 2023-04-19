@@ -1,9 +1,8 @@
 import "./SortBar.css";
 
-const SortBar = ({ setSortWord, setCurrPage }) => {
+const SortBar = ({ handleSort }) => {
   function handleClick(str) {
-    setSortWord(str);
-    setCurrPage(1);
+    handleSort(str);
   }
 
   return (
