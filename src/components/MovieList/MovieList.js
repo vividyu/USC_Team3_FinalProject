@@ -27,7 +27,6 @@ const MovieList = ({ movieData, blockedMovies, getMovies }) => {
 
 
   const handleSort = (sortType) => {
-    console.log(movies);
     const sortedMovies = [...movies].sort((a, b) => {
       let aValue = a[sortType];
       let bValue = b[sortType];
