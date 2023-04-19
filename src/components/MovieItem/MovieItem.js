@@ -52,7 +52,7 @@ function MovieItem({ movie }) {
         <span>Vote count: {movie.vote_count} </span> |{" "}
         <span>Average score: {movie.vote_average}</span>
       </div>
-      <div className="movie-overview">{movie.overview}</div>
+      <div className="movie-item-overview">{movie.overview}</div>
     </div>
   );
 }
