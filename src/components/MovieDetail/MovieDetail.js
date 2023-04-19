@@ -14,17 +14,34 @@ function MovieDetail({ movie, onClose, movieDetails, getMovieDetails }) {
   }
 
   //console.log(movieDetails);
+  const genreArr = movieDetails.genres;
 
   return (
     <div className="movie-detail-container">
       <button className="close-button" onClick={onClose}>
         X
       </button>
-      <img
-        src={`http://image.tmdb.org/t/p/w1280${movieDetails.backdrop_path}`}
-        alt={movieDetails.title}
-      />
-      <div className="movie-overview">{movieDetails.overview}</div>
+      <div className="movie-detail-backdrop-container">
+        <div className="overlay"></div>
+        <img className="movie-detail-backdrop"
+          src={`http://image.tmdb.org/t/p/w1280${movieDetails.backdrop_path}`}
+        />
+
+        <img className="movie-detail-poster"
+          src={`http://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
+        />
+        <div className="movie-detail-text-container">
+          <div className="movie-detail-original-title">{movieDetails.original_title}</div>
+          <ul className="movie-detail-genre">
+            {genreArr.map((genre, index) => (
+              <li key={index}>{genre.name}</li>
+            ))}
+          </ul>
+          <div className="movie-overview">{movieDetails.overview}</div>
+        </div>
+
+      </div>
+
     </div>
   );
 }
