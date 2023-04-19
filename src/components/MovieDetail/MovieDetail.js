@@ -13,7 +13,7 @@ function MovieDetail({ movie, onClose, movieDetails, getMovieDetails }) {
     return null;
   }
 
-  console.log(movieDetails);
+  //console.log(movieDetails);
   const genreArr = movieDetails.genres;
 
   return (
