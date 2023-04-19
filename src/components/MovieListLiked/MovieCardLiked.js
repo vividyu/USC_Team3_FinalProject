@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux'
-import { deleteLikedMovie, blockMovie, expandMovieData } from '../../actions/actionCreator'
+import { useDispatch } from "react-redux";
+import {
+  deleteLikedMovie,
+  blockMovie,
+  expandMovieData,
+} from "../../actions/actionCreator";
+import "./LikedMovieCard.scss";
 
-const BlockedMovieCard = ({ movie }) => {
-  const [isMouseOver, setIsMouseOver] =useState(false);
+const LikedMovieCard = ({ movie }) => {
+  const [isMouseOver, setIsMouseOver] = useState(false);
   const dispatch = useDispatch();
 
   const handleMouseEnter = () => {
@@ -15,32 +20,54 @@ const BlockedMovieCard = ({ movie }) => {
   };
 
   const handleRemoveLiked = (movie) => {
-    dispatch(deleteLikedMovie(movie))
+    dispatch(deleteLikedMovie(movie));
   };
 
   const handleBlockLiked = (movie) => {
-    dispatch(blockMovie(movie))
+    dispatch(blockMovie(movie));
   };
 
   const handleExpand = (movie) => {
-    dispatch(expandMovieData(movie))
+    dispatch(expandMovieData(movie));
   };
 
   return (
     <div
-    className="blocked-movie-card"
-    onMouseEnter={handleMouseEnter}
-    onMouseLeave={handleMouseOut}>
-      <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.Title} />
+      className="liked-movie-card"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseOut}
+    >
+      <img
+        src={`http://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        alt={movie.Title}
+      />
       {isMouseOver && (
-        <div className="blocked-card-button">
-          <button onClick={() => {handleRemoveLiked(movie)}}>like</button>
-          <button onClick={() => {handleBlockLiked(movie)}}>remove</button>
-          <button onClick={() => {handleExpand(movie)}}>...</button>
+        <div className="liked-card-button">
+          <button
+            onClick={() => {
+              handleRemoveLiked(movie);
+            }}
+          >
+            unlike
+          </button>
+          <button
+            onClick={() => {
+              handleBlockLiked(movie);
+            }}
+          >
+            block
+          </button>
+          <button
+            onClick={() => {
+              handleExpand(movie);
+            }}
+          >
+            ...
+          </button>
         </div>
       )}
     </div>
-  )
+  );
 };
 
-export default BlockedMovieCard;
+export default LikedMovieCard;

@@ -1,18 +1,24 @@
 import React from "react";
+import { connect } from "react-redux";
 import BlockedMovieCard from "./MovieCardBlocked";
+import "./BlockedMovieList.scss";
 
-const MovieListBlocked = ({movies}) => {
+const MovieListBlocked = ({ blockedMovies }) => {
   return (
     <div>
       <h1>Movie List of Blocked</h1>
       <div className="blocked-movie-list">
-        {movies ? movies.map((movie, index) => (
-        <BlockedMovieCard key={index} movie={movie} />
-        )) : []}
+        {blockedMovies
+          ? blockedMovies.map((movie, index) => (
+              <BlockedMovieCard key={index} movie={movie} />
+            ))
+          : []}
       </div>
-      
     </div>
   );
 };
 
-export default MovieListBlocked;
+const mapStateToProps = (state) => ({
+  blockedMovies: state.blockedMovies,
+});
+export default connect(mapStateToProps)(MovieListBlocked);
