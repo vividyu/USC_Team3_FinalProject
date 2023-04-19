@@ -9,16 +9,25 @@ import "./MovieList.css";
 
 const MovieList = ({ movieData, blockedMovies, getMovies }) => {
   const [currPage, setCurrPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [movies, setMovies] = useState([]);
+  const [sortedMovies, setSortedMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
+
 
   useEffect(() => {
     getMovies(currPage);
-    setMovies(movieData);
+    setMovies(movieData && movieData[currPage] && movieData[currPage].movies ? movieData[currPage].movies: []);
+    setTotalPages(movieData && movieData[currPage] && movieData[currPage].totalPages
+              ? movieData[currPage].totalPages
+              : 1);
+    setSortedMovies(movies);
     handleFilter(movies);
-  }, [currPage]);
+  }, [currPage, getMovies, movies]);
+
 
   const handleSort = (sortType) => {
+    console.log(movies);
     const sortedMovies = [...movies].sort((a, b) => {
       let aValue = a[sortType];
       let bValue = b[sortType];
@@ -29,17 +38,16 @@ const MovieList = ({ movieData, blockedMovies, getMovies }) => {
       }
 
       if (aValue < bValue) {
-        return -1;
+        return 1;
       }
 
       if (aValue > bValue) {
-        return 1;
+        return -1;
       }
 
       return 0;
     });
-
-    setMovies(sortedMovies);
+    setSortedMovies(sortedMovies);
   };
 
   function handleFilter(movies) {
@@ -53,11 +61,6 @@ const MovieList = ({ movieData, blockedMovies, getMovies }) => {
     setFilteredMovies(storeFilteredMovies);
   }
 
-  const totalPages =
-    movieData && movieData[currPage] && movieData[currPage].totalPages
-      ? movieData[currPage].totalPages
-      : 1;
-
 
   return (
     <div>
@@ -69,7 +72,7 @@ const MovieList = ({ movieData, blockedMovies, getMovies }) => {
       />
       <SortBar handleSort={handleSort} />
       <div className="list-of-movies">
-        {filteredMovies?.map((movie) => (
+        {sortedMovies?.map((movie) => (
           <MovieItem key={movie.id} movie={movie} />
         ))}
       </div>

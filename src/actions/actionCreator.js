@@ -44,7 +44,7 @@ export const expandMovieData = (movieId) => ({
 export const getMovies = (page) => {
   return async (dispatch) => {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/discover/movie?sort_by=original_title.asc&` + `&page=${page}` + `&api_key=${API_KEY_V3}`
+      `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&` + `&page=${page}` + `&api_key=${API_KEY_V3}`
     );
     dispatch(
       storeMovieData(page, response.data.results, response.data.total_pages)
