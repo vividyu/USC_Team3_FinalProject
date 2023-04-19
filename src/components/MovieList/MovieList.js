@@ -12,7 +12,7 @@ const MovieList = ({ movieData, blockedMovies, getMovies }) => {
   const [totalPages, setTotalPages] = useState(0);
   const [movies, setMovies] = useState([]);
   const [sortedMovies, setSortedMovies] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState([]);
+  // const [filteredMovies, setFilteredMovies] = useState([]);
 
 
   useEffect(() => {
@@ -22,8 +22,7 @@ const MovieList = ({ movieData, blockedMovies, getMovies }) => {
               ? movieData[currPage].totalPages
               : 1);
     setSortedMovies(movies);
-    handleFilter(movies);
-  }, [currPage, getMovies, movies]);
+  }, [currPage, movies]);
 
 
   const handleSort = (sortType) => {
@@ -49,16 +48,16 @@ const MovieList = ({ movieData, blockedMovies, getMovies }) => {
     setSortedMovies(sortedMovies);
   };
 
-  function handleFilter(movies) {
-    let storeFilteredMovies = [];
-    if (movies) {
-      storeFilteredMovies = movies.filter(
-        (movie) =>
-          !blockedMovies.some((blockedMovie) => blockedMovie.id === movie.id)
-      );
-    }
-    setFilteredMovies(storeFilteredMovies);
-  }
+  // function handleFilter(movies) {
+  //   let storeFilteredMovies = [];
+  //   if (movies) {
+  //     storeFilteredMovies = movies.filter(
+  //       (movie) =>
+  //         !blockedMovies.some((blockedMovie) => blockedMovie.id === movie.id)
+  //     );
+  //   }
+  //   setFilteredMovies(storeFilteredMovies);
+  // }
 
 
   return (
@@ -71,7 +70,10 @@ const MovieList = ({ movieData, blockedMovies, getMovies }) => {
       />
       <SortBar handleSort={handleSort} />
       <div className="list-of-movies">
-        {sortedMovies?.map((movie) => (
+        {sortedMovies?.filter(
+        (movie) =>
+          !blockedMovies.some((blockedMovie) => blockedMovie.id === movie.id)
+        ).map((movie) => (
           <MovieItem key={movie.id} movie={movie} />
         ))}
       </div>
