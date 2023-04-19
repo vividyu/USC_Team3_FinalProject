@@ -17,12 +17,12 @@ const MovieListLiked = ({ likedMovies }) => {
       <div className="liked-movie-list">
         {likedMovies
           ? likedMovies.map((movie, index) => (
-            <LikedMovieCard key={index} movie={movie} setExpandedMovie={setExpandedMovie}/>
+            <LikedMovieCard key={index} movie={movie} setExpandedMovie={setExpandedMovie} />
           ))
           : []}
 
         {expandedMovie && (
-            <MovieDetail movie={expandedMovie} onClose={handleCloseMovieDetail} />
+          <MovieDetail movie={expandedMovie} onClose={handleCloseMovieDetail} />
         )}
 
       </div>

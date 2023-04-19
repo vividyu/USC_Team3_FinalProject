@@ -4,6 +4,7 @@ import {
   DELETE_LIKED_MOVIE,
   UNBLOCK_MOVIE,
   STROE_MOVIE_DATA,
+  STORE_MOVIE_DETAILS,
 } from "./actions/actionConstants";
 import initialState from "./store";
 
@@ -48,6 +49,10 @@ function reducer(state = initialState, action) {
           },
         },
       };
+
+    case STORE_MOVIE_DETAILS:
+      return { ...state, movieDetails: action.payload };
+
     default:
       return state;
   }
