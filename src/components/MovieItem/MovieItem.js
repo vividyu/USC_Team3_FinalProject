@@ -19,7 +19,7 @@ function MovieItem({ movie }) {
   const isMovieLiked = () => {
     return likedMovies.some((likedMovie) => likedMovie.id === movie.id);
   };
-  console.log(likedMovies);
+  // console.log(likedMovies);
 
   const handleBlock = () => {
     dispatch(blockMovie(movie));

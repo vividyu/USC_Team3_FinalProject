@@ -51,7 +51,7 @@ export const getMovies = (page, sortWord) => {
     }
 
     const response = await axios.get(
-      handleSort(sortWord) + `&page=${page}` + `&api_key=${API_KEY_V3}`
+      `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&` + `&page=${page}` + `&api_key=${API_KEY_V3}`
     );
     dispatch(
       storeMovieData(page, response.data.results, response.data.total_pages)
