@@ -16,13 +16,16 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         blockedMovies: [...state.blockedMovies, action.payload],
+        likedMovies: state.likedMovies.filter(
+          (movie) => movie.id !== action.payload.id
+        ),
       };
 
     case DELETE_LIKED_MOVIE:
       return {
         ...state,
         likedMovies: state.likedMovies.filter(
-          (movie) => movie.id !== action.payload
+          (movie) => movie.id !== action.payload.id
         ),
       };
 
@@ -30,7 +33,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         blockedMovies: state.blockedMovies.filter(
-          (movie) => movie.id !== action.payload
+          (movie) => movie.id !== action.payload.id
         ),
       };
 
