@@ -7,7 +7,7 @@ import {
 } from "../../actions/actionCreator";
 import "./BlockedMovieCard.scss";
 
-const BlockedMovieCard = ({ movie }) => {
+const BlockedMovieCard = ({ movie, setExpandMovie }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const dispatch = useDispatch();
 
@@ -29,7 +29,8 @@ const BlockedMovieCard = ({ movie }) => {
   };
 
   const handleExpand = (movie) => {
-    dispatch(expandMovieData(movie));
+    // dispatch(expandMovieData(movie));
+    setExpandMovie(movie);
   };
 
   return (
