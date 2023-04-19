@@ -42,7 +42,14 @@ export const expandMovieData = (movieId) => ({
 });
 
 export const getMovies = (page, sortWord) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+
+    const movieData = getState().movieData;
+
+    if (movieData[page]) {
+      return;
+    }
+
     const response = await axios.get(
       handleSort(sortWord) + `&page=${page}` + `&api_key=${API_KEY_V3}`
     );
