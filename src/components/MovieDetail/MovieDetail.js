@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getMovieDetails } from "../../actions/actionCreator";
 import "./MovieDetail.css";
+import { SHA256 } from "crypto-js";
 
 function MovieDetail({ movie, onClose, movieDetails, getMovieDetails }) {
   useEffect(() => {
@@ -31,11 +32,22 @@ function MovieDetail({ movie, onClose, movieDetails, getMovieDetails }) {
           src={`http://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
         />
         <div className="movie-detail-text-container">
-          <div className="movie-detail-original-title">{movieDetails.original_title}</div>
+          <div className="movie-detail-original-title">{`${movieDetails.original_title}(${movieDetails.release_date.substring(0, 4)})`}</div>
           <ul className="movie-detail-genre">
-            {genreArr.map((genre, index) => (
-              <li key={index}>{genre.name}</li>
-            ))}
+            {genreArr.map((genre, index) => {
+              const genre_name = genre.name;
+              const hash = SHA256(genre_name).toString();
+              const color = '#' + hash.substring(0, 6);
+              const listItemStyle = {
+                backgroundColor: color,
+              };
+
+              return (
+                <li key={index} style={listItemStyle}>
+                  {genre.name}
+                </li>
+              );
+            })}
           </ul>
           <div className="movie-overview">{movieDetails.overview}</div>
         </div>
