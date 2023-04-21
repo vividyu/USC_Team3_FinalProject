@@ -12,7 +12,6 @@ const MovieList = ({ movieData, blockedMovies, getMovies }) => {
   const [totalPages, setTotalPages] = useState(0);
   const [movies, setMovies] = useState([]);
   const [sortedMovies, setSortedMovies] = useState([]);
-  // const [filteredMovies, setFilteredMovies] = useState([]);
 
 
   useEffect(() => {
@@ -47,18 +46,6 @@ const MovieList = ({ movieData, blockedMovies, getMovies }) => {
     });
     setSortedMovies(sortedMovies);
   };
-
-  // function handleFilter(movies) {
-  //   let storeFilteredMovies = [];
-  //   if (movies) {
-  //     storeFilteredMovies = movies.filter(
-  //       (movie) =>
-  //         !blockedMovies.some((blockedMovie) => blockedMovie.id === movie.id)
-  //     );
-  //   }
-  //   setFilteredMovies(storeFilteredMovies);
-  // }
-
 
   return (
     <div>
