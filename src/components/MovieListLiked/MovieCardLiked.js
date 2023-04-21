@@ -6,6 +6,7 @@ import {
   expandMovieData,
 } from "../../actions/actionCreator";
 import "./LikedMovieCard.scss";
+import PropTypes from 'prop-types';
 
 const LikedMovieCard = ({ movie, setExpandedMovie }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
@@ -69,6 +70,12 @@ const LikedMovieCard = ({ movie, setExpandedMovie }) => {
       )}
     </div>
   );
+};
+
+
+LikedMovieCard.PropTypes = {
+  movie:PropTypes.object.isRequired,
+  setExpandedMovie:PropTypes.func.isRequired,
 };
 
 export default LikedMovieCard;

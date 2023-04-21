@@ -6,8 +6,10 @@ import {
   expandMovieData,
 } from "../../actions/actionCreator";
 import "./BlockedMovieCard.scss";
+import PropTypes from 'prop-types';
 
 const BlockedMovieCard = ({ movie, setExpandMovie }) => {
+  
   const [isMouseOver, setIsMouseOver] = useState(false);
   const dispatch = useDispatch();
 
@@ -70,6 +72,11 @@ const BlockedMovieCard = ({ movie, setExpandMovie }) => {
       )}
     </div>
   );
+};
+
+BlockedMovieCard.PropTypes = {
+  movie:PropTypes.object.isRequired,
+  setExpandMovie:PropTypes.func.isRequired,
 };
 
 export default BlockedMovieCard;
