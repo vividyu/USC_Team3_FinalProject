@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { getMovieDetails } from "../../actions/actionCreator";
 import "./MovieDetail.css";
 import { SHA256 } from "crypto-js";
+import PropTypes from "prop-types";
 
 function MovieDetail({ movie, onClose, movieDetails, getMovieDetails }) {
   useEffect(() => {
@@ -57,6 +58,20 @@ function MovieDetail({ movie, onClose, movieDetails, getMovieDetails }) {
     </div>
   );
 }
+
+MovieDetail.propTypes = {
+  movie: PropTypes.object.isRequired,
+  movieDetails: PropTypes.shape({
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+      })
+    ),
+  }),
+  getMovieDetails: PropTypes.func.isRequired,
+};
+
 
 const mapStateToProps = (state) => ({
   movieDetails: state.movieDetails,
