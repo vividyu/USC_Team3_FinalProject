@@ -81,7 +81,7 @@ const mapDispatchtoProps = (dispatch) => {
 };
 
 MovieList.propTypes = {
-  movieData: PropTypes.array,
+  movieData: PropTypes.object,
   blockedMovies: PropTypes.array,
   getMovies: PropTypes.func
 }
