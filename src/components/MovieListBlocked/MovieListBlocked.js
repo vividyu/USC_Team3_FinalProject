@@ -32,7 +32,7 @@ const MovieListBlocked = ({ blockedMovies }) => {
 };
 
 MovieListBlocked.PropTypes = {
-  blockedMovies:PropTypes.func.isRequired,
+  blockedMovies:PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({

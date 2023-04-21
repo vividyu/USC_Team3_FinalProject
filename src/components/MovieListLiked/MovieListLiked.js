@@ -32,7 +32,7 @@ const MovieListLiked = ({ likedMovies }) => {
 };
 
 MovieListLiked.PropTypes = {
-  likedMovies: PropTypes.func.isRequired,
+  likedMovies: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
