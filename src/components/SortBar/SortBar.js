@@ -1,4 +1,5 @@
 import "./SortBar.css";
+import PropTypes from 'prop-types';
 
 const SortBar = ({ handleSort }) => {
   function handleClick(str) {
@@ -15,5 +16,9 @@ const SortBar = ({ handleSort }) => {
     </div>
   );
 };
+
+SortBar.PropTypes = {
+  handleSort: PropTypes.func
+}
 
 export default SortBar;
