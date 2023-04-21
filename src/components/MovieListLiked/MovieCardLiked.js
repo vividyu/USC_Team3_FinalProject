@@ -73,7 +73,7 @@ const LikedMovieCard = ({ movie, setExpandedMovie }) => {
 };
 
 
-LikedMovieCard.PropTypes = {
+LikedMovieCard.propTypes = {
   movie:PropTypes.object.isRequired,
   setExpandedMovie:PropTypes.func.isRequired,
 };

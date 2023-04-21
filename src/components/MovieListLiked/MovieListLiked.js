@@ -31,7 +31,7 @@ const MovieListLiked = ({ likedMovies }) => {
   );
 };
 
-MovieListLiked.PropTypes = {
+MovieListLiked.propTypes = {
   likedMovies: PropTypes.array.isRequired,
 };
 

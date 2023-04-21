@@ -31,7 +31,7 @@ const MovieListBlocked = ({ blockedMovies }) => {
   );
 };
 
-MovieListBlocked.PropTypes = {
+MovieListBlocked.propTypes = {
   blockedMovies:PropTypes.array.isRequired,
 };
 
