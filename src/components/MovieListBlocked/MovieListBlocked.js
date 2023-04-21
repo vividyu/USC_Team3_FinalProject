@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import BlockedMovieCard from "./MovieCardBlocked";
 import MovieDetail from "../MovieDetail/MovieDetail";
+import PropTypes from 'prop-types';
 
 import "./BlockedMovieList.scss";
 
@@ -28,6 +29,10 @@ const MovieListBlocked = ({ blockedMovies }) => {
       </div>
     </div>
   );
+};
+
+MovieListBlocked.PropTypes = {
+  blockedMovies:PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

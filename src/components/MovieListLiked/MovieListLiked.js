@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import LikedMovieCard from "./MovieCardLiked";
 import "./LikedMovieList.scss";
 import MovieDetail from "../MovieDetail/MovieDetail";
+import PropTypes from 'prop-types';
 
 const MovieListLiked = ({ likedMovies }) => {
   const [expandedMovie, setExpandedMovie] = useState(null);
@@ -28,6 +29,10 @@ const MovieListLiked = ({ likedMovies }) => {
       </div>
     </div>
   );
+};
+
+MovieListLiked.PropTypes = {
+  likedMovies: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
