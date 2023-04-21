@@ -74,7 +74,7 @@ const BlockedMovieCard = ({ movie, setExpandMovie }) => {
   );
 };
 
-BlockedMovieCard.PropTypes = {
+BlockedMovieCard.propTypes = {
   movie:PropTypes.object.isRequired,
   setExpandMovie:PropTypes.func.isRequired,
 };
