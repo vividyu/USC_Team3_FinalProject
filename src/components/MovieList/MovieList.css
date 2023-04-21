@@ -1,0 +1,16 @@
+.list-of-movies {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.movie-list-content {
+  background-color: aliceblue;
+}
+
+h1 {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 5em;
+  margin: 50px auto;
+}
