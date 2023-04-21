@@ -5,6 +5,7 @@ import MovieItem from "../MovieItem/MovieItem";
 import Pagination from "../Pagination/Pagination";
 import { connect } from "react-redux";
 import { getMovies } from "../../actions/actionCreator";
+import PropTypes from 'prop-types';
 import "./MovieList.css";
 
 const MovieList = ({ movieData, blockedMovies, getMovies }) => {
@@ -78,5 +79,11 @@ const mapDispatchtoProps = (dispatch) => {
     getMovies: (page) => dispatch(getMovies(page)),
   };
 };
+
+MovieList.propTypes = {
+  movieData: PropTypes.array,
+  blockedMovies: PropTypes.array,
+  getMovies: PropTypes.func
+}
 
 export default connect(mapStateToProps, mapDispatchtoProps)(MovieList);
